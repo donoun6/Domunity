@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    z-index: 1;
+    text-align: center;
+    background: white;
+    border-bottom: 1px solid black;
+}
+
+header .headerWrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+header .headerLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10%;
+    width: 5%;
+    height: 100%;
+}
+
+header .headerNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+    height: 100%;
+}
+
+header .headerUser {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10%;
+    width: 10%;
+    height: 100%;
+}
+
+header .signin-btn , header .signup-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 32px;
+    margin: 0 10px;
+    color: black;
+}
+
+header .signin p , header .signup p {
+    color: black;
+}
+
+header .signin a , header .signup a {
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    margin-top: 80px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+}
+
+article {
+    width: 50%;
+    height: 50%;
+}
+
+section {
+    background: green;
+}
+
+#section1 , #section2 , #section3 , #section4 {
+    width: 100%;
+    height: 100%;
+}
+
+#section1 {
+    background: black;
+}
+
+#section2 {
+    background: white;
+}
+
+#section3 {
+    background: gold;
+}
+
+#section4 {
+    background: purple;
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15%;
+    background: yellow;
+}
