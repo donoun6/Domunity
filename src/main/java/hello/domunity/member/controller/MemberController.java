@@ -8,62 +8,89 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @Controller
-@RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/signup")
+    /**
+     * 회원가입 폼 화면
+     * @param model Member 객체 담기
+     * @return
+     */
+    @GetMapping("auth/signup")
     public String signupForm(Model model) {
         model.addAttribute("member", new Member());
         return "member/signup";
     }
 
-    @PostMapping("/signup")
+    /**
+     * 회원가입
+     * @param bindingResult 검증 로직 수행
+     */
+    @PostMapping("auth/signup")
     public String signup(@ModelAttribute Member member, BindingResult bindingResult) {
-
         //검증 로직
         if (!StringUtils.hasText(member.getMemberId())) {
             bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, "필수 입력값 입니다."));
         }
         if (!StringUtils.hasText(member.getMemberId())) {
-            bindingResult.addError(new FieldError("member", "mPasswd", member.getMemberPw(), false, null, null, "필수 입력값 입니다."));
+            bindingResult.addError(new FieldError("member", "memberPw", member.getMemberPw(), false, null, null, "필수 입력값 입니다."));
         }
         if (!StringUtils.hasText(member.getMemberName())) {
-            bindingResult.addError(new FieldError("member", "mName", member.getMemberName(), false, null, null, "필수 입력값 입니다."));
+            bindingResult.addError(new FieldError("member", "memberName", member.getMemberName(), false, null, null, "필수 입력값 입니다."));
         }
         if (bindingResult.hasErrors()) {
             return "member/signup";
         }
 
         memberService.save(member);
-        return "redirect:/domunity";
+        return "redirect:/";
     }
 
-    @GetMapping("/signin")
-    public String signinForm(Model model) {
+    /**
+     * 로그인 폼 화면
+     * @param model Member 객체 담기
+     */
+    @GetMapping("auth/signin")
+    public String signinForm(@ModelAttribute Member member, BindingResult bindingResult,
+                            @RequestParam(value = "error", required = false)String error,
+                             @RequestParam(value = "exception", required = false)String exception,
+                             Model model) {
+        if (error != null && exception != null) {
+            bindingResult.addError(new ObjectError( "member",null,null, "해당 정보를 찾을 수 없습니다."));
+            bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, null));
+            bindingResult.addError(new FieldError("member", "memberPw", member.getMemberPw(), false, null, null, null));
+        }
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
         model.addAttribute("member", new Member());
+
         return "member/signin";
     }
 
-    @PostMapping("/signin")
-    public String signin(@ModelAttribute Member member, BindingResult bindingResult) {
-        //검증 로직
-        if (!StringUtils.hasText(member.getMemberId())) {
-            bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, "필수 입력값 입니다."));
-        }
-        if (!StringUtils.hasText(member.getMemberPw())) {
-            bindingResult.addError(new FieldError("member", "mPasswd", member.getMemberPw(), false, null, null, "필수 입력값 입니다."));
-        }
-        if (bindingResult.hasErrors()) {
-            return "member/signin";
-        }
+    /**
+     * 로그아웃
+     * 세션,쿠키 초기화
+     */
+    @GetMapping("/logout")
+    public String logout(HttpServletResponse response, HttpServletRequest request) {
+        Cookie cookie = new Cookie("memberId", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
 
-        return "member/signin";
+        HttpSession session = request.getSession(false);
+        session.invalidate(); //세션 무효화
+        return "redirect:/";
     }
 
 }

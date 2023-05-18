@@ -26,6 +26,9 @@ public class OauthController {
 
     private final MemberService memberService;
 
+    /**
+     * 카카오 로그인 처리
+     */
     @RequestMapping("auth/kako/callback")
     @ResponseBody
     public String kakaoCallback(String code) {
@@ -107,12 +110,8 @@ public class OauthController {
         member.setMemberName(nickname);
 
         //가입자 혹은 비가입자
-
         memberService.save(member);
 
-
-
         return response2.getBody();
-
     }
 }

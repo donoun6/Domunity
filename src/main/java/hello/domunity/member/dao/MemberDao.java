@@ -21,6 +21,9 @@ public class MemberDao {
         this.template = new JdbcTemplate(dataSource);
     }
 
+    /**
+     * 회원 저장
+     */
     public void save(Member member) {
         em.persist(member);
     }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/style.css">
@@ -10,14 +11,21 @@
 <header>
     <div class="headerWrap">
         <div class="headerLogo">
-            <h1><a href="/domunity">Domucation</a></h1>
+            <h1><a href="/">Domunity</a></h1>
         </div>
         <div class="headerNav">
             <h1>headerNav</h1>
         </div>
         <div class="headerUser">
-            <div class="signin-btn"><a href="/member/signin">로그인</a></div>
-            <div class="signup-btn"><a href="/member/signup"> <p>회원가입</p> </a></div>
+            <th:block sec:authorize="isAnonymous()">
+                <div class="signin-btn"><a href="/auth/signin"><p>로그인</p></a></div>
+                <div class="signup-btn"><a href="/auth/signup"><p>회원가입</p></a></div>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <div class="signin-btn"><a href="#">개인정보</a></div>
+                <div class="signin-btn"><a href="/logout">로그아웃</a></div>
+            </th:block>
+
         </div>
     </div>
 </header>

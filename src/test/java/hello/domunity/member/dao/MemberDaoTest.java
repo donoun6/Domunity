@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +27,8 @@ class MemberDaoTest {
 
     @Autowired
     MemberService memberService;
+
+
 
     @TestConfiguration
     static class TestConfig {
@@ -44,11 +47,11 @@ class MemberDaoTest {
     @Test
     void save() {
         Member member = new Member();
-        member.setMemberId("testid");
-        member.setMemberPw("testpasswd");
+        member.setMemberId("donoun6");
+        member.setMemberPw("good123123");
         member.setMemberName("testname");
         memberDao.save(member);
-
+//        Member login = memberService.login(member);
     }
 
     @Test
@@ -59,5 +62,11 @@ class MemberDaoTest {
 
     @Test
     void login() {
+    }
+
+    @Test
+    void hash() {
+        String encPassword = new BCryptPasswordEncoder().encode("asdsa1232");
+        System.out.println("encPassword = " + encPassword);
     }
 }

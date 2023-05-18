@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/domunity")
 public class HomeController {
 
+    /**
+     * 메인 화면
+     */
     @GetMapping
     public String homePage() {
         return "index";
