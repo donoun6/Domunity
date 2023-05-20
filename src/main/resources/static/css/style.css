@@ -1,9 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-
 body {
     font-family: 'Noto Sans KR', sans-serif;
     box-sizing: border-box;
 }
+
+input[type="password"]::placeholder {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+input::placeholder {
+    font-size: 15px;
+    color: #8e8e8e;
+}
+
+button:focus {
+    outline: none;
+}
+
+p {
+    color: #8e8e8e;
+    font-size: 14px;
+}
+
+a {
+    color: black;
+}
+/* ------------------------------------ */
 
 header {
     position: fixed;
@@ -14,7 +36,7 @@ header {
     z-index: 1;
     text-align: center;
     background: white;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #8e8e8e;
 }
 
 header .headerWrap {
@@ -32,14 +54,70 @@ header .headerLogo {
     margin-left: 10%;
     width: 5%;
     height: 100%;
+    color: #4b89eb;
 }
 
 header .headerNav {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
     width: 55%;
     height: 100%;
+    margin-right: 50px;
+}
+
+header .headerNav ol {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header .headerNav li {
+    font-size: 14px;
+    font-weight: 600;
+    width: 120px;
+}
+
+header .headerNav li a {
+    color: #4a4a4a;
+}
+
+header .headerNav li a:hover {
+    color: #4b89eb;
+}
+
+header .searchNav {
+    position: absolute;
+    right: 25%;
+}
+
+header .searchNav input {
+    width: 200px;
+    height: 30px;
+    border-radius: 12px;
+    outline: 2px solid #8e8e8e;
+    border: 0;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: .3s;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
+}
+
+header .searchNav input::placeholder {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+header .searchNav input:focus {
+    outline: 2px solid #4b89eb;
+    transition: .3s;
+}
+
+header .searchNav:focus::placeholder {
+    color: #a9b9d1;
+    transition: .3s;
 }
 
 header .headerUser {
@@ -59,23 +137,49 @@ header .signin-btn , header .signup-btn {
     height: 32px;
     margin: 0 10px;
     color: black;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
 }
 
-header .signin p , header .signup p {
+header .signin-btn, header .signup-btn {
+    border: 1px solid #8e8e8e;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+header .signin-btn:hover {
+    background: #ededed;
+    transition: .3s;
+}
+
+header .signup-btn {
+    border: 1px solid #4b89eb;
+    background: #4b89eb;
+}
+
+header .signup-btn:hover {
+    border: 1px solid #437ad1;
+    background: #437ad1;
+    transition: .3s;
+}
+
+header .signin-btn p , header .signup-btn p {
+    width: 80px;
     color: black;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8e8e8e;
 }
 
-header .signin a , header .signup a {
-    width: 100%;
-    height: 100%;
+header .signup-btn p{
+    color: white;
 }
 
 main {
     margin-top: 80px;
     position: relative;
-    width: 100%;
-    height: 100%;
-    background: black;
+    padding: 0 5% 0 15%;
+    width: 80%;
+    height: 130%;
     display: flex;
 }
 
@@ -85,28 +189,130 @@ article {
 }
 
 section {
-    background: green;
 }
 
-#section1 , #section2 , #section3 , #section4 {
+#section , #section2 {
     width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+#section{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10% 0 0 20%;
+}
+
+#section .category {
+    width: 450px;
+    height: 30px;
+    background: #c2daf0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
+}
+
+#section .category h1 {
+    margin-left: 30px;
+}
+
+#section .border-box {
+    width: 80%;
     height: 100%;
 }
 
-#section1 {
-    background: black;
+#section .border-box ol {
+    width: 485px;
+    padding: 0;
 }
 
-#section2 {
-    background: white;
+#section .border-info {
+    padding-left: 20px;
 }
 
-#section3 {
-    background: gold;
+#section .border-info span:last-child {
+    margin-left: 55%;
 }
 
-#section4 {
-    background: purple;
+#section .border-info span {
+    font-size: 14px;
+}
+
+#section .border-title {
+    padding-left: 20px;
+}
+
+#section .border-title h1 {
+    font-size: 18px;
+    margin: 7px 0 5px;
+}
+
+#section .line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+}
+
+/* === */
+
+#section2{
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10% 20% 0% 0%;
+}
+
+#section2 .category {
+    width: 450px;
+    height: 30px;
+    background: #c2daf0;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
+}
+
+#section2 .category h1 {
+    margin-left: 30px;
+}
+
+#section2 .border-box {
+    width: 80%;
+    height: 100%;
+}
+
+#section2 .border-box ol {
+    width: 485px;
+    padding: 0;
+}
+
+#section2 .border-info {
+    padding-left: 20px;
+}
+
+#section2 .border-info span:last-child {
+    margin-left: 55%;
+}
+
+#section2 .border-info span {
+    font-size: 14px;
+}
+
+#section2 .border-title {
+    padding-left: 20px;
+}
+
+#section2 .border-title h1 {
+    font-size: 18px;
+    margin: 7px 0 5px;
+}
+
+#section2 .line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 10px;
 }
 
 footer {
@@ -115,5 +321,8 @@ footer {
     justify-content: center;
     width: 100%;
     height: 15%;
-    background: yellow;
+}
+
+footer p {
+    font-size: 14px;
 }

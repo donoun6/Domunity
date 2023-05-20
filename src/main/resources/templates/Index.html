@@ -11,10 +11,18 @@
 <header>
     <div class="headerWrap">
         <div class="headerLogo">
-            <h1><a href="/">Domunity</a></h1>
+            <h1><a href="/" style="color: #4b89eb;">Domunity</a></h1>
         </div>
         <div class="headerNav">
-            <h1>headerNav</h1>
+            <ol>
+                <li><a href="#">QnA</a></li>
+                <li><a href="#">커뮤니티</a></li>
+                <li><a href="#">고민</a></li>
+                <li><a href="#">스터디</a></li>
+            </ol>
+        </div>
+        <div class="searchNav">
+            <input type="text" name="" value="" placeholder="검색">
         </div>
         <div class="headerUser">
             <th:block sec:authorize="isAnonymous()">
@@ -22,8 +30,8 @@
                 <div class="signup-btn"><a href="/auth/signup"><p>회원가입</p></a></div>
             </th:block>
             <th:block sec:authorize="isAuthenticated()">
-                <div class="signin-btn"><a href="#">개인정보</a></div>
-                <div class="signin-btn"><a href="/logout">로그아웃</a></div>
+                <div class="signin-btn"><a href="#"><p>개인정보</p></a></div>
+                <div class="signup-btn"><a href="/logout"><p>로그아웃</p></a></div>
             </th:block>
 
         </div>
@@ -31,25 +39,301 @@
 </header>
 <main>
     <article class="">
-        <section id="section1">
-
+        <section id="section">
+            <div class="category">
+                <h1>QnA</h1>
+            </div>
+            <div class="border-box">
+                <ol>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
-        <section id="section2">
-
+        <section id="section">
+            <div class="category">
+                <h1>고민</h1>
+            </div>
+            <div class="border-box">
+                <ol>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
     </article>
     <article class="">
-        <section id="section3">
-
+        <section id="section2">
+            <div class="category">
+                <h1>고민</h1>
+            </div>
+            <div class="border-box">
+                <ol>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
-        <section id="section4">
-
+        <section id="section2">
+            <div class="category">
+                <h1>고민</h1>
+            </div>
+            <div class="border-box">
+                <ol>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="border-info">
+                            <span>donoun6</span>
+                            <span>1분전</span>
+                            <span>댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <h1>테스트 제목입니다.</h1>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </section>
     </article>
 </main>
 <footer>
     <div class="footerWrap">
-        <h1>footer</h1>
+        <p>Copyright &copy; donoun6 2023</p>
     </div>
 </footer>
 </body>

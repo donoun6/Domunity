@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 
@@ -51,22 +49,18 @@ class MemberDaoTest {
         member.setMemberPw("good123123");
         member.setMemberName("testname");
         memberDao.save(member);
-//        Member login = memberService.login(member);
     }
 
     @Test
     void findById() {
-        Member member = memberDao.findById("donoun3");
+        Member member = memberDao.findById("donoun6");
         log.info(member.toString());
     }
 
-    @Test
-    void login() {
-    }
 
     @Test
     void hash() {
-        String encPassword = new BCryptPasswordEncoder().encode("asdsa1232");
+        String encPassword = new BCryptPasswordEncoder().encode("hashTest");
         System.out.println("encPassword = " + encPassword);
     }
 }

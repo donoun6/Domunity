@@ -8,6 +8,6 @@ public interface MemberService {
 
     Member findById(String memberId);
 
-//    Member login(Member member);
+    Member findMember(String memberId);
 
 }

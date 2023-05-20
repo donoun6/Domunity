@@ -2,7 +2,9 @@ package hello.domunity.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,14 +12,19 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @EnableWebSecurity//시큐리티 필터가 적용
-public class MySecurityConfig  {
+public class MySecurityConfig {
 
+    //로그인 실패 핸들러 의존성 주입
     @Autowired
-//    /* 로그인 실패 핸들러 의존성 주입 */
     private AuthenticationFailureHandler customFailureHandler;
 
     @Autowired
     private PrincipalService principalService;
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
 
     @Bean
     public BCryptPasswordEncoder encoderPWD() {
@@ -50,33 +57,7 @@ public class MySecurityConfig  {
                 .permitAll()
                 .and()
                 .logout();
-//                .invalidateHttpSession(true).deleteCookies("JESSIONID");
 
         return http.build();
     }
 }
-
-
-
-
-//        http
-//                .csrf().disable() //scrf토큰 비활성화
-//                .authorizeRequests()
-//                .mvcMatchers("/", "/css/**", "/image/**", "/js/**")
-//                .permitAll();
-//        http
-//                .authorizeRequests(authorize ->
-//                        authorize
-//                                .antMatchers("/","/domunity","/member/signup").permitAll() //권한이 필요하지 않는 주소패턴들
-//                                //위에서 설정한 주소 이외에 나머지 주소들은 인증이 필요 == 로그인페이지로(권한 획득)
-//                                .anyRequest().authenticated()
-//                );
-//
-//        http.formLogin(login ->
-//                login
-//                        .loginPage("/member/signin")
-//                        .usernameParameter("memberId")
-//                        .passwordParameter("memberPw")
-//                        .loginProcessingUrl("/member/signin")
-//                        .failureHandler(customFailureHandler)
-//        );

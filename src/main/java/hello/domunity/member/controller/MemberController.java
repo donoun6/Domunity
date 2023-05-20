@@ -52,6 +52,17 @@ public class MemberController {
         if (bindingResult.hasErrors()) {
             return "member/signup";
         }
+        
+        //가입 중복 체크
+        Member checkMember = memberService.findMember(member.getMemberId());
+        if (checkMember.getMemberId() != null) {
+            bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, "해당 아이디는 등록된 아이디입니다."));
+            return "member/signup";
+        }
+        if (checkMember.getMemberName() != null) {
+            bindingResult.addError(new FieldError("member", "memberName", member.getMemberId(), false, null, null, "해당 별명은 등록된 별명입니다."));
+            return "member/signup";
+        }
 
         memberService.save(member);
         return "redirect:/";

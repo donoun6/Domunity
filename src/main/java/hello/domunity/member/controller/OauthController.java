@@ -7,15 +7,20 @@ import hello.domunity.member.dto.KakaoProfile;
 import hello.domunity.member.dto.OAuthToken;
 import hello.domunity.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
@@ -24,13 +29,17 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OauthController {
 
+    @Value("${cos.key}")
+    private String cosKey;
+
     private final MemberService memberService;
 
+    private final AuthenticationManager authenticationManager;
     /**
      * 카카오 로그인 처리
+     * OAuth 인증 방식 처리
      */
     @RequestMapping("auth/kako/callback")
-    @ResponseBody
     public String kakaoCallback(String code) {
 
         //POST 방식으로 Kye = value 데이터를 요청
@@ -104,14 +113,23 @@ public class OauthController {
         UUID garbagePassword = UUID.randomUUID();
         String nickname = kakaoProfile.getKakao_account().getEmail().split("@")[0];
 
-        Member member = new Member();
-        member.setMemberId(String.valueOf(id));
-        member.setMemberPw(String.valueOf(garbagePassword).substring(0,16));
-        member.setMemberName(nickname);
+        //카카오 엑세스 토큰으로 받은 회원 정보를 Member 객체에 재 설정
+        Member kakaoMember = new Member();
+        kakaoMember.setMemberId(String.valueOf(id));
+        kakaoMember.setMemberPw(cosKey);
+        kakaoMember.setMemberName(nickname);
 
-        //가입자 혹은 비가입자
-        memberService.save(member);
+        //가입자 혹은 비가입자 체크 처리
+        Member originMember = memberService.findMember(kakaoMember.getMemberId());
 
-        return response2.getBody();
+        //비가입자 회원가입 처리
+        if (originMember.getMemberId() == null) {
+            memberService.save(kakaoMember);
+        }
+
+        //Spring Security 로그인 처리
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(kakaoMember.getMemberId(), cosKey));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "redirect:/";
     }
 }
