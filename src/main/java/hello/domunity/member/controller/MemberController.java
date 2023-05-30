@@ -2,7 +2,14 @@ package hello.domunity.member.controller;
 
 import hello.domunity.member.domain.Member;
 import hello.domunity.member.service.MemberService;
+import hello.domunity.security.MemberDetailsService;
+import hello.domunity.security.PrincipalService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -15,12 +22,16 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
+    private final PrincipalService principalService;
+    private final AuthenticationManager authenticationManager;
+
 
     /**
      * 회원가입 폼 화면
@@ -59,7 +70,9 @@ public class MemberController {
             bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, "해당 아이디는 등록된 아이디입니다."));
             return "member/signup";
         }
-        if (checkMember.getMemberName() != null) {
+
+        Member checkName = memberService.findMember(member.getMemberName());
+        if (checkName.getMemberName() != null) {
             bindingResult.addError(new FieldError("member", "memberName", member.getMemberId(), false, null, null, "해당 별명은 등록된 별명입니다."));
             return "member/signup";
         }
@@ -101,6 +114,61 @@ public class MemberController {
 
         HttpSession session = request.getSession(false);
         session.invalidate(); //세션 무효화
+        return "redirect:/";
+    }
+
+    /**
+     * 회원 정보 수정 폼 화면
+     * @param principal 시큐리티 현재 로그인 회원정보 가져오기
+     */
+    @GetMapping("auth/update")
+    public String updateForm(Model model, Principal principal) {
+        String name = principal.getName();
+        System.out.println("name = " + name);
+        Member member = memberService.findMember(name);
+        model.addAttribute("member", member);
+        return "member/update";
+    }
+
+    /**
+     * 회원 정보 수정 (별명만)
+     * @param principal 시큐리티 현재 로그인 회원정보 가져오기
+     * @return
+     */
+    @PostMapping("auth/update")
+    public String update(@ModelAttribute Member member, BindingResult bindingResult, Principal principal, Model model) {
+        //검증 로직
+        if (!StringUtils.hasText(member.getMemberName())) {
+            bindingResult.addError(new FieldError("member", "memberName", member.getMemberName(), false, null, null, "필수 입력값 입니다."));
+        }
+
+        //중복 체크
+        Member checkName = memberService.findName(member.getMemberName());
+        if (checkName.getMemberName() != null) {
+            bindingResult.addError(new FieldError("member", "memberName", member.getMemberId(), false, null, null, "해당 별명은 등록된 별명입니다."));
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "member/update";
+        }
+
+        //시큐리티 로그인 정보 가져오기
+        String name = principal.getName();
+        member = memberService.findMember(name);
+        member.setMemberName(member.getMemberName());
+
+        //회원 정보 수정
+        memberService.updateMember(member);
+
+        /** ========== 변경된 세션 등록 ========== **/
+        /* 1. 새로운 UsernamePasswordAuthenticationToken 생성하여 AuthenticationManager 을 이용해 등록 */
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(member.getMemberId(), member.getMemberPw())
+        );
+
+        /* 2. SecurityContextHolder 안에 있는 Context를 호출해 변경된 Authentication으로 설정 */
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         return "redirect:/";
     }
 

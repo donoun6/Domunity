@@ -6,8 +6,10 @@ public interface MemberService {
 
     void save(Member member);
 
-    Member findById(String memberId);
+    void updateMember(Member member);
 
     Member findMember(String memberId);
+
+    Member findName(String memberName);
 
 }

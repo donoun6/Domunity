@@ -30,7 +30,7 @@
                 <div class="signup-btn"><a href="/auth/signup"><p>회원가입</p></a></div>
             </th:block>
             <th:block sec:authorize="isAuthenticated()">
-                <div class="signin-btn"><a href="#"><p>개인정보</p></a></div>
+                <div class="signin-btn"><a href="/auth/update"><p>개인정보</p></a></div>
                 <div class="signup-btn"><a href="/logout"><p>로그아웃</p></a></div>
             </th:block>
 

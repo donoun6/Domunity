@@ -4,7 +4,6 @@ import hello.domunity.member.dao.MemberDao;
 import hello.domunity.member.domain.Member;
 import hello.domunity.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +18,6 @@ public class MembewrServiceimpl implements MemberService{
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder encoder;
 
-
-
     @Override
     public void save(Member member) {
         String rawPassword = member.getMemberPw(); //평문
@@ -30,13 +27,20 @@ public class MembewrServiceimpl implements MemberService{
     }
 
     @Override
-    public Member findById(String memberId) {
-        return memberDao.findById(memberId);
+    public void updateMember(Member member) {
+        memberDao.save(member);
     }
 
     @Override
     public Member findMember(String memberId) {
         Member member = memberRepository.findByMemberId(memberId).orElseGet(() ->{
+            return new Member();
+        });
+        return member;
+    }
+
+    public Member findName(String memberName) {
+        Member member = memberRepository.findByMemberName(memberName).orElseGet(() -> {
             return new Member();
         });
         return member;

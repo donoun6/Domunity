@@ -121,7 +121,6 @@ public class OauthController {
 
         //가입자 혹은 비가입자 체크 처리
         Member originMember = memberService.findMember(kakaoMember.getMemberId());
-
         //비가입자 회원가입 처리
         if (originMember.getMemberId() == null) {
             memberService.save(kakaoMember);
@@ -133,3 +132,4 @@ public class OauthController {
         return "redirect:/";
     }
 }
+
