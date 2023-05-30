@@ -86,15 +86,14 @@ public class MemberController {
      * @param model Member 객체 담기
      */
     @GetMapping("auth/signin")
-    public String signinForm(@ModelAttribute Member member, BindingResult bindingResult,
-                            @RequestParam(value = "error", required = false)String error,
-                             @RequestParam(value = "exception", required = false)String exception,
-                             Model model) {
+    public String signinForm(@ModelAttribute Member member, BindingResult bindingResult, @RequestParam(value = "error", required = false)String error,
+                             @RequestParam(value = "exception", required = false)String exception, Model model) {
         if (error != null && exception != null) {
             bindingResult.addError(new ObjectError( "member",null,null, "해당 정보를 찾을 수 없습니다."));
             bindingResult.addError(new FieldError("member", "memberId", member.getMemberId(), false, null, null, null));
             bindingResult.addError(new FieldError("member", "memberPw", member.getMemberPw(), false, null, null, null));
         }
+
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
         model.addAttribute("member", new Member());
@@ -137,17 +136,14 @@ public class MemberController {
      */
     @PostMapping("auth/update")
     public String update(@ModelAttribute Member member, BindingResult bindingResult, Principal principal, Model model) {
-        //검증 로직
+        //검증 로직 , 중복 체크
         if (!StringUtils.hasText(member.getMemberName())) {
             bindingResult.addError(new FieldError("member", "memberName", member.getMemberName(), false, null, null, "필수 입력값 입니다."));
         }
-
-        //중복 체크
         Member checkName = memberService.findName(member.getMemberName());
         if (checkName.getMemberName() != null) {
             bindingResult.addError(new FieldError("member", "memberName", member.getMemberId(), false, null, null, "해당 별명은 등록된 별명입니다."));
         }
-
         if (bindingResult.hasErrors()) {
             return "member/update";
         }
