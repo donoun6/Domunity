@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="/css/board.css">
 
     <!-- summernote   -->
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="/summernote/summernote-lite.js"></script>
-    <script src="/summernote/lang/summernote-ko-KR.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
-    <link rel="stylesheet" href="/summernote/summernote-lite.css">
     <title></title>
 </head>
 <body>
@@ -49,13 +48,13 @@
     <div class="mainWrap">
         <div class="textWrap">
             <h1>함께할때 더 즐거운 순간</h1>
-            <p>00님 지식공유 플랫폼 OKKY에서 다양한 사람을 만나고 생각의 폭을 넓혀보세요.</p>
+            <p>지식공유 플랫폼 OKKY에서 다양한 사람을 만나고 생각의 폭을 넓혀보세요.</p>
         </div>
-        <form method="post">
+        <form>
             <ol>
-                <li><label for="category">Category</label></li>
+                <li><label for="boardCategory">Category</label></li>
                 <li>
-                    <select class="select" name="">
+                    <select class="select" id="boardCategory">
                         <option value="" disabled="disabled" selected>----- 카테고리를 선택하세요 -----</option>
                         <option value="QnA">QnA</option>
                         <option value="커뮤니티">커뮤니티</option>
@@ -63,11 +62,11 @@
                         <option value="스터디">스터디</option>
                     </select>
                 </li>
-                <li><label for="title">Title</label></li>
-                <li><input class="board-input" type="text" placeholder="제목을 입력해주세요." minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]+$"></li>
-                <li><label for="content">Content</label></li>
+                <li><label for="boardTitle">Title</label></li>
+                <li><input id="boardTitle" class="board-input" type="text" placeholder="제목을 입력해주세요." minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]+$"></li>
+                <li><label for="boardContent">Content</label></li>
                 <li>
-                    <textarea id="summernote" type="text" th:class="form-control"
+                    <textarea id="boardContent" class="summernote" type="text" th:class="form-control"
                               name="boardContents" rows="15" cols="95" placeholder="내용을 입력해주세요."></textarea>
                 <li style="text-align: center;"><button class="sum-btn" type="submit">작성하기</button></li>
                 <ol>
@@ -80,9 +79,12 @@
     </div>
 </footer>
 <script>
-    $(document).ready(function() {
-
-        var toolbar = [
+    $('#boardContent').summernote({
+        height : 400,
+        width : 904,
+        lang : 'ko-KR',
+        focus : false,
+        toolbar: [
             // 글꼴 설정
             ['fontname', ['fontname']],
             // 글자 크기 설정
@@ -100,35 +102,14 @@
             // 그림첨부, 링크만들기, 동영상첨부
             ['insert',['picture','link','video']],
             // 코드보기, 확대해서보기, 도움말
-            ['view', ['codeview','fullscreen', 'help']]
-        ];
-
-        var setting = {
-            height : 400,
-            width : 904,
-            minHeight : null,
-            maxHeight : null,
-            focus : false,
-            lang : 'ko-KR',
-            toolbar : toolbar,
-            // 추가한 글꼴
-            fontNames: ['맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
-            // 추가한 폰트사이즈
-            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
-
-            callbacks : { //여기 부분이 이미지를 첨부하는 부분
-                onImageUpload : function(files, editor,
-                                         welEditable) {
-                    for (var i = files.length - 1; i >= 0; i--) {
-                        uploadSummernoteImageFile(files[i],
-                            this);
-                    }
-                }
-            }
-        };
-
-        $('#summernote').summernote(setting);
+            ['view', ['codeview', 'help']]
+        ],
+        // 추가한 글꼴
+        fontNames: ['맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+        // 추가한 폰트사이즈
+        fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
     });
 </script>
+<script src="/js/board.js"></script>
 </body>
 </html>

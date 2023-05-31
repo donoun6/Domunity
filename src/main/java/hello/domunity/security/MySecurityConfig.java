@@ -38,9 +38,7 @@ public class MySecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                .ignoringAntMatchers("/api/**")
-                .and()
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/css/**", "/image/**", "/js/**","/","/domunity", "/auth/**")
                 .permitAll()
