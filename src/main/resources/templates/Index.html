@@ -44,75 +44,15 @@
                 <h1>QnA</h1>
             </div>
             <div class="border-box">
-                <ol>
+                <ol th:each="boardsQnA : ${boardsQnA}">
                     <li>
                         <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
+                            <span th:text="${boardsQnA.mid.memberName}">id</span>
+                            <span style="color: #8e8e8e" th:text="${#strings.substring(boardsQnA.regDate,0,10)}">time</span>
+                            <span style="color: #8e8e8e" th:text="|댓글 ${boardsQnA.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
+                            <h1 th:text="${boardsQnA.boardTitle}">테스트 제목입니다.</h1>
                         </div>
                         <div class="line">
                         </div>
@@ -122,66 +62,18 @@
         </section>
         <section id="section">
             <div class="category">
-                <h1>고민</h1>
+                <h1>커뮤니티</h1>
             </div>
             <div class="border-box">
-                <ol>
+                <ol th:each="boardsCommunity : ${boardsCommunity}">
                     <li>
                         <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
+                            <span th:text="${boardsCommunity.mid.memberName}">id</span>
+                            <span style="color: #8e8e8e" th:text="${#strings.substring(boardsCommunity.regDate,0,10)}">time</span>
+                            <span style="color: #8e8e8e" th:text="|댓글 ${boardsCommunity.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
+                            <h1 th:text="${boardsCommunity.boardTitle}">테스트 제목입니다.</h1>
                         </div>
                         <div class="line">
                         </div>
@@ -196,63 +88,15 @@
                 <h1>고민</h1>
             </div>
             <div class="border-box">
-                <ol>
+                <ol th:each="boardWorry : ${boardWorry}">
                     <li>
                         <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
+                            <span th:text="${boardWorry.mid.memberName}">id</span>
+                            <span style="color: #8e8e8e" th:text="${#strings.substring(boardWorry.regDate,0,10)}">time</span>
+                            <span style="color: #8e8e8e" th:text="|댓글 ${boardWorry.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
+                            <h1 th:text="${boardWorry.boardTitle}">테스트 제목입니다.</h1>
                         </div>
                         <div class="line">
                         </div>
@@ -262,66 +106,18 @@
         </section>
         <section id="section2">
             <div class="category">
-                <h1>고민</h1>
+                <h1>스터디</h1>
             </div>
             <div class="border-box">
-                <ol>
+                <ol th:each="boardStudy : ${boardStudy}">
                     <li>
                         <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
+                            <span th:text="${boardStudy.mid.memberName}">id</span>
+                            <span style="color: #8e8e8e" th:text="${#strings.substring(boardStudy.regDate,0,10)}">time</span>
+                            <span style="color: #8e8e8e" th:text="|댓글 ${boardStudy.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
-                        </div>
-                        <div class="line">
-                        </div>
-                    </li>
-                    <li>
-                        <div class="border-info">
-                            <span>donoun6</span>
-                            <span>1분전</span>
-                            <span>댓글 1개</span>
-                        </div>
-                        <div class="border-title">
-                            <h1>테스트 제목입니다.</h1>
+                            <h1 th:text="${boardStudy.boardTitle}">테스트 제목입니다.</h1>
                         </div>
                         <div class="line">
                         </div>

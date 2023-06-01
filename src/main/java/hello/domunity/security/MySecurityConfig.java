@@ -40,7 +40,7 @@ public class MySecurityConfig {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/css/**", "/image/**", "/js/**","/","/domunity", "/auth/**")
+                .antMatchers("/css/**", "/image/**", "/js/**","/", "/auth/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -51,7 +51,7 @@ public class MySecurityConfig {
                 .passwordParameter("memberPw")
                 .loginProcessingUrl("/auth/signin")
                 .failureHandler(customFailureHandler)
-                .defaultSuccessUrl("/domunity")
+                .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
                 .logout();

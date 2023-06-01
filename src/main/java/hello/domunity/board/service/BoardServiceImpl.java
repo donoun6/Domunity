@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,4 +24,10 @@ public class BoardServiceImpl implements BoardService {
         board.setMid(member);
         boardRepository.save(board);
     }
+
+    @Override
+    public List<Board> viewBoardByCategory(String category) {
+        return boardRepository.findTop6ByBoardCategoryOrderByBidDesc(category);
+    }
+
 }

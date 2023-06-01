@@ -123,7 +123,6 @@ public class MemberController {
     @GetMapping("auth/update")
     public String updateForm(Model model, Principal principal) {
         String name = principal.getName();
-        System.out.println("name = " + name);
         Member member = memberService.findMember(name);
         model.addAttribute("member", member);
         return "member/update";
@@ -136,6 +135,7 @@ public class MemberController {
      */
     @PostMapping("auth/update")
     public String update(@ModelAttribute Member member, BindingResult bindingResult, Principal principal, Model model) {
+        String updateName = member.getMemberName();
         //검증 로직 , 중복 체크
         if (!StringUtils.hasText(member.getMemberName())) {
             bindingResult.addError(new FieldError("member", "memberName", member.getMemberName(), false, null, null, "필수 입력값 입니다."));
@@ -151,19 +151,19 @@ public class MemberController {
         //시큐리티 로그인 정보 가져오기
         String name = principal.getName();
         member = memberService.findMember(name);
-        member.setMemberName(member.getMemberName());
+        member.setMemberName(updateName);
 
         //회원 정보 수정
         memberService.updateMember(member);
 
-        /** ========== 변경된 세션 등록 ========== **/
+        /** ========== 변경된 세션 등록 ========== 현재는 csrf를 비활성화 했기때문에 사용 X **/
         /* 1. 새로운 UsernamePasswordAuthenticationToken 생성하여 AuthenticationManager 을 이용해 등록 */
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(member.getMemberId(), member.getMemberPw())
-        );
-
-        /* 2. SecurityContextHolder 안에 있는 Context를 호출해 변경된 Authentication으로 설정 */
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        Authentication authentication = authenticationManager.authenticate(
+//                new UsernamePasswordAuthenticationToken(member.getMemberId(), member.getMemberPw())
+//        );
+//
+//        /* 2. SecurityContextHolder 안에 있는 Context를 호출해 변경된 Authentication으로 설정 */
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         return "redirect:/";
     }
