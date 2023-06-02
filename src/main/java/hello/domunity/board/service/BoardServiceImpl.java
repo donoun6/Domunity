@@ -5,6 +5,8 @@ import hello.domunity.board.domain.Board;
 import hello.domunity.board.repository.BoardRepository;
 import hello.domunity.member.domain.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,8 +33,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> viewBoardByCategory(String category) {
-        return boardRepository.findByBoardCategoryOrderByBidDesc(category);
+    public Page<Board> viewBoardByCategory(String category , Pageable pageable) {
+        return boardRepository.findByBoardCategory(category, pageable);
     }
 
     @Override

@@ -2,6 +2,8 @@ package hello.domunity.board.service;
 
 import hello.domunity.board.domain.Board;
 import hello.domunity.member.domain.Member;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,8 +14,26 @@ public interface BoardService {
      * @param member
      */
     void save(Board board, Member member);
+
+    /**
+     * 메인화면 게시글 출력
+     * @param category
+     * @return
+     */
     List<Board> HomeViewBoardByCategory(String category);
-    List<Board> viewBoardByCategory(String category);
+
+    /**
+     * 카데고리 화면 게시글 출력
+     * @param category
+     * @return
+     */
+    Page<Board> viewBoardByCategory(String category, Pageable pageable);
+
+    /**
+     * 게시물 보기
+     * @param id
+     * @return
+     */
     public Board viewBoard(int id);
 
 }

@@ -2,14 +2,9 @@ package hello.domunity.member.controller;
 
 import hello.domunity.member.domain.Member;
 import hello.domunity.member.service.MemberService;
-import hello.domunity.security.MemberDetailsService;
 import hello.domunity.security.PrincipalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;

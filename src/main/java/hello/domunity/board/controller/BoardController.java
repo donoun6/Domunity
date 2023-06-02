@@ -3,13 +3,15 @@ package hello.domunity.board.controller;
 import hello.domunity.board.domain.Board;
 import hello.domunity.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/board")
@@ -31,9 +33,9 @@ public class BoardController {
     }
 
     @GetMapping("/list/{category}")
-    public String boardList(@PathVariable String category, Model model) {
+    public String boardList(@PathVariable String category, Model model , @PageableDefault(size = 3, sort = "bid", direction = Sort.Direction.DESC)Pageable pageable) {
         model.addAttribute("category", category);
-        model.addAttribute("boardView", boardService.viewBoardByCategory(category));
+        model.addAttribute("boardView", boardService.viewBoardByCategory(category,pageable));
         return "board/boardList";
     }
 

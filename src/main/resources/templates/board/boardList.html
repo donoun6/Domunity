@@ -6,6 +6,33 @@
     <link rel="stylesheet" href="/css/boardList.css">
     <link rel="stylesheet" href="/css/initial.css">
     <title></title>
+    <style>
+        .center {
+            text-align: center;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+        }
+
+        .pagination a.active {
+            background-color: #4b89eb;
+            color: white;
+            border: 1px solid #4b89eb;
+        }
+
+        .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
 </head>
 <body>
 <header>
@@ -53,7 +80,7 @@
             </div>
             <div class="border-box">
                 <ol>
-                    <li th:each="boardView : ${boardView}">
+                    <li th:each="boardView : ${boardView.content}">
                         <div class="border-info">
                             <span th:text="${boardView.mid.memberName}">donoun6</span>
                             <span th:text="${#strings.substring(boardView.regDate,0,10)}">1분전</span>
@@ -74,6 +101,29 @@
                 </ol>
             </div>
         </section>
+        <div class="center">
+            <div class="pagination" th:with="start=${(boardView.number/5)*5 + 1},
+            end=(${(boardView.totalPages == 0) ? 1 : (start + (5 - 1) < boardView.totalPages ? start + (5 - 1) : boardView.totalPages)})">
+
+                <a th:if="${boardView.first}" disable >&laquo;</a>
+                <a th:unless="${boardView.first}" href="?page=0" >&laquo;</a>
+
+
+                <a th:if="${boardView.first}" disabled >❮</a>
+                <a th:unless="${boardView.first}" th:href="@{?page={number}(number = ${boardView.number-1})}">❮</a>
+
+                <th:block th:each="page: ${#numbers.sequence(start, end)}">
+                    <a th:if="${boardView.number == page - 1}" class="active" th:text="${page}" th:href="@{?page={number}(number = ${page-1})}"></a>
+                    <a th:unless="${boardView.number == page - 1}" th:text="${page}" th:href="@{?page={number}(number = ${page-1})}"></a>
+                </th:block>
+
+                <a th:if="${boardView.last}" disabled >❯</a>
+                <a th:unless="${boardView.last}" th:href="@{?page={number}(number = ${boardView.number+1})}">❯</a>
+
+                <a th:if="${boardView.last}" disabled >&raquo;</a>
+                <a th:unless="${boardView.last}"  th:href="@{?page={number}(number = ${boardView.totalPages-1})}">&raquo;</a>
+            </div>
+        </div>
     </article>
 </main>
 <footer>

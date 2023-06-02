@@ -22,7 +22,7 @@ let index = {
             dataType: "json", //요청을 서버로 해서 응답이 왔을 때 기본적으로 모든것이 문자열 (생긴게 json이면) => javascript 오브젝트로 변경
         }).done(function (resp){
             alert("글쓰기가 완료되었습니다.")
-            location.href = "/";
+            window.location.replace("/");
         }).fail(function (error){
            alert("글쓰기에 실패하였습니다.");
         });

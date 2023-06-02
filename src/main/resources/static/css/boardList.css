@@ -242,6 +242,7 @@ section {
     background: #c2daf0;
     border-radius: 20px;
     padding: 20px;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
 }
 
 #section .category h1 {
