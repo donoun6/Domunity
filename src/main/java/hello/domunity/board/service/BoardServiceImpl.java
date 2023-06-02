@@ -26,8 +26,21 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> viewBoardByCategory(String category) {
+    public List<Board> HomeViewBoardByCategory(String category) {
         return boardRepository.findTop6ByBoardCategoryOrderByBidDesc(category);
+    }
+
+    @Override
+    public List<Board> viewBoardByCategory(String category) {
+        return boardRepository.findByBoardCategoryOrderByBidDesc(category);
+    }
+
+    @Override
+    public Board viewBoard(int bid) {
+        return boardRepository.findById(bid)
+                .orElseThrow(() -> {
+            return new IllegalArgumentException("글 상세보기 실패 : 찾을 수 없습니다.");
+        });
     }
 
 }

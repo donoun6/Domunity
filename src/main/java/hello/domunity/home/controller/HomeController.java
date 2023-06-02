@@ -21,16 +21,10 @@ public class HomeController {
      */
     @GetMapping
     public String homePage(Model model) {
-        List<Board> boardsQnA = boardService.viewBoardByCategory("QnA");
-        List<Board> boardsCommunity = boardService.viewBoardByCategory("커뮤니티");
-        List<Board> boardWorry = boardService.viewBoardByCategory("고민");
-        List<Board> boardStudy = boardService.viewBoardByCategory("스터디");
-
-        System.out.println("boardStudy = " + boardStudy);
-        model.addAttribute("boardsQnA",boardsQnA);
-        model.addAttribute("boardsCommunity",boardsCommunity);
-        model.addAttribute("boardWorry",boardWorry);
-        model.addAttribute("boardStudy",boardStudy);
+        model.addAttribute("boardsQnA",boardService.HomeViewBoardByCategory("qna"));
+        model.addAttribute("boardsCommunity",boardService.HomeViewBoardByCategory("community"));
+        model.addAttribute("boardWorry",boardService.HomeViewBoardByCategory("worry"));
+        model.addAttribute("boardStudy",boardService.HomeViewBoardByCategory("study"));
 
         return "index";
     }

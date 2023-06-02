@@ -12,7 +12,8 @@ public interface BoardService {
      * @param member
      */
     void save(Board board, Member member);
-
+    List<Board> HomeViewBoardByCategory(String category);
     List<Board> viewBoardByCategory(String category);
+    public Board viewBoard(int id);
 
 }

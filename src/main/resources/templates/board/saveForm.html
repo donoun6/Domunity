@@ -22,10 +22,10 @@
         </div>
         <div class="headerNav">
             <ol>
-                <li><a href="#">QnA</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">고민</a></li>
-                <li><a href="#">스터디</a></li>
+                <li><a href="/board/list/qna">QnA</a></li>
+                <li><a href="/board/list/community">커뮤니티</a></li>
+                <li><a href="/board/list/worry">고민</a></li>
+                <li><a href="/board/list/study">스터디</a></li>
             </ol>
         </div>
         <div class="searchNav">
@@ -56,10 +56,10 @@
                 <li>
                     <select class="select" id="boardCategory">
                         <option value="" disabled="disabled" selected>----- 카테고리를 선택하세요 -----</option>
-                        <option value="QnA">QnA</option>
-                        <option value="커뮤니티">커뮤니티</option>
-                        <option value="고민">고민</option>
-                        <option value="스터디">스터디</option>
+                        <option value="qna">QnA</option>
+                        <option value="community">커뮤니티</option>
+                        <option value="worry">고민</option>
+                        <option value="study">스터디</option>
                     </select>
                 </li>
                 <li><label for="boardTitle">Title</label></li>
@@ -109,6 +109,10 @@
         // 추가한 폰트사이즈
         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
     });
+
+    $('#boardContent').summernote('fontName', '맑은 고딕');
+    $('#boardContent').summernote('foreColor', 'black');
+    $('#boardContent').summernote('fontSize', 16);
 </script>
 <script src="/js/board.js"></script>
 </body>

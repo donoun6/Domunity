@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/initial.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <title></title>
+</head>
+<body>
+<header>
+    <div class="headerWrap">
+        <div class="headerLogo">
+            <h1><a href="/" style="color: #4b89eb;">Domunity</a></h1>
+        </div>
+        <div class="headerNav">
+            <ol>
+                <li><a href="/board/list/qna">QnA</a></li>
+                <li><a href="/board/list/community">커뮤니티</a></li>
+                <li><a href="/board/list/worry">고민</a></li>
+                <li><a href="/board/list/study">스터디</a></li>
+            </ol>
+        </div>
+        <div class="searchNav">
+            <input type="text" name="" value="" placeholder="검색">
+        </div>
+        <div class="headerUser">
+            <th:block sec:authorize="isAnonymous()">
+                <div class="signin-btn"><a href="/auth/signin"><p>로그인</p></a></div>
+                <div class="signup-btn"><a href="/auth/signup"><p>회원가입</p></a></div>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <div class="signin-btn"><a href="/auth/update"><p>개인정보</p></a></div>
+                <div class="signup-btn"><a href="/logout"><p>로그아웃</p></a></div>
+            </th:block>
+
+        </div>
+    </div>
+</header>
+<main>
+    <th:block th:object="${board}">
+    <div class="mainWrap">
+        <div class="categoryWrap">
+            <div class="line"></div>
+            <th:block th:switch="*{boardCategory}">
+                <span class="categoryText" th:case="qna">QnA</span>
+                <span class="categoryText" th:case="community">커뮤니티</span>
+                <span class="categoryText" th:case="worry">고민</span>
+                <span class="categoryText" th:case="study">스터디</span>
+            </th:block>
+        </div>
+        <div class="userInfoWrap">
+            <div class="userInfo">
+                <span class="name" th:text="*{mid.memberName}">name</span><br>
+                <span class="time" th:text="*{#strings.substring(mid.regDate,0,19)}">time</span><br>
+            </div>
+        </div>
+        <div class="titleWrap">
+            <h1 th:text="*{boardTitle}">타이틀</h1>
+        </div>
+        <div class="contentWrap">
+            <div class="content" th:utext="*{boardContent}">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+        </div>
+    </div>
+    </th:block>
+</main>
+<footer>
+    <div class="footerWrap">
+        <p>Copyright &copy; donoun6 2023</p>
+    </div>
+</footer>
+</body>
+</html>

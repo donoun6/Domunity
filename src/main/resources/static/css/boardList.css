@@ -79,11 +79,11 @@ header .headerNav li {
     width: 120px;
 }
 
-header .headerNav li a, .border-title a {
+header .headerNav li a {
     color: #4a4a4a;
 }
 
-header .headerNav li a:hover, .border-title a:hover {
+header .headerNav li a:hover {
     color: #4b89eb;
 }
 
@@ -177,10 +177,10 @@ header .signup-btn p{
 main {
     margin-top: 80px;
     position: relative;
-    padding: 0 5% 0 15%;
-    width: 80%;
+    width: 100%;
     height: 130%;
     display: flex;
+    justify-content: center;
 }
 
 article {
@@ -189,6 +189,38 @@ article {
 }
 
 section {
+}
+
+.write-btn {
+    position: absolute;
+    left: 24.5%;
+    top: 2.5%;
+    border: 1px solid #4b89eb;
+    background: #4b89eb;
+    border-radius: 15px;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 32px;
+    margin: 0 10px;
+    color: black;
+    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
+    color: white;
+}
+
+.write-btn:hover{
+    border: 1px solid #437ad1;
+    background: #437ad1;
+    transition: .3s;
+}
+
+
+.write-btn p {
+    color: white;
+    font-size: 14px;
+    font-weight: 450;
 }
 
 #section , #section2 {
@@ -201,16 +233,15 @@ section {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
-    padding: 10% 0 0 20%;
+    padding: 10% 0 0 0;
 }
 
 #section .category {
-    width: 450px;
+    width: 95%;
     height: 30px;
     background: #c2daf0;
     border-radius: 20px;
     padding: 20px;
-    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
 }
 
 #section .category h1 {
@@ -218,12 +249,12 @@ section {
 }
 
 #section .border-box {
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 
 #section .border-box ol {
-    width: 485px;
+    width: 100%;
     padding: 0;
 }
 
@@ -232,7 +263,7 @@ section {
 }
 
 #section .border-info span:last-child {
-    margin-left: 55%;
+    margin-left: 80%;
 }
 
 #section .border-info span {
@@ -240,7 +271,9 @@ section {
 }
 
 #section .border-title {
+    margin: 15px 0 10px;
     padding-left: 20px;
+    position: relative;
 }
 
 #section .border-title h1 {
@@ -248,67 +281,24 @@ section {
     margin: 7px 0 5px;
 }
 
+#section .border-title span {
+    font-size: 10px;
+    border: 1px solid #b5d2f5;
+    padding: 2px 7px;
+    border-radius: 7px;
+    background: #b5d2f5;
+    color: #3d81d4;
+}
+
+#section .border-title a {
+    color: #4a4a4a;
+}
+
+#section .border-title a:hover {
+    color: #4b89eb;
+}
+
 #section .line {
-    width: 100%;
-    height: 1px;
-    border-bottom: 1px solid #d6d6d6;
-    margin-bottom: 10px;
-}
-
-/* === */
-
-#section2{
-    width: 100%;
-    height: 100%;
-    box-sizing: border-box;
-    padding: 10% 20% 0% 0%;
-}
-
-#section2 .category {
-    width: 450px;
-    height: 30px;
-    background: #c2daf0;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 7px 20px rgb(0 0 0 / 10%);
-}
-
-#section2 .category h1 {
-    margin-left: 30px;
-}
-
-#section2 .border-box {
-    width: 80%;
-    height: 100%;
-}
-
-#section2 .border-box ol {
-    width: 485px;
-    padding: 0;
-}
-
-#section2 .border-info {
-    padding-left: 20px;
-}
-
-#section2 .border-info span:last-child {
-    margin-left: 55%;
-}
-
-#section2 .border-info span {
-    font-size: 14px;
-}
-
-#section2 .border-title {
-    padding-left: 20px;
-}
-
-#section2 .border-title h1 {
-    font-size: 18px;
-    margin: 7px 0 5px;
-}
-
-#section2 .line {
     width: 100%;
     height: 1px;
     border-bottom: 1px solid #d6d6d6;
@@ -326,3 +316,4 @@ footer {
 footer p {
     font-size: 14px;
 }
+

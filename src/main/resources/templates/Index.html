@@ -15,10 +15,10 @@
         </div>
         <div class="headerNav">
             <ol>
-                <li><a href="#">QnA</a></li>
-                <li><a href="#">커뮤니티</a></li>
-                <li><a href="#">고민</a></li>
-                <li><a href="#">스터디</a></li>
+                <li><a href="/board/list/qna">QnA</a></li>
+                <li><a href="/board/list/community">커뮤니티</a></li>
+                <li><a href="/board/list/worry">고민</a></li>
+                <li><a href="/board/list/study">스터디</a></li>
             </ol>
         </div>
         <div class="searchNav">
@@ -41,7 +41,7 @@
     <article class="">
         <section id="section">
             <div class="category">
-                <h1>QnA</h1>
+                <a href="/board/list/qna"><h1>QnA</h1></a>
             </div>
             <div class="border-box">
                 <ol th:each="boardsQnA : ${boardsQnA}">
@@ -52,7 +52,7 @@
                             <span style="color: #8e8e8e" th:text="|댓글 ${boardsQnA.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1 th:text="${boardsQnA.boardTitle}">테스트 제목입니다.</h1>
+                            <a th:href="@{/board/view/{bid}(bid = ${boardsQnA.bid})}"><h1 th:text="${boardsQnA.boardTitle}">테스트 제목입니다.</h1></a>
                         </div>
                         <div class="line">
                         </div>
@@ -62,7 +62,7 @@
         </section>
         <section id="section">
             <div class="category">
-                <h1>커뮤니티</h1>
+                <a href="/board/list/community"><h1>커뮤니티</h1></a>
             </div>
             <div class="border-box">
                 <ol th:each="boardsCommunity : ${boardsCommunity}">
@@ -73,7 +73,7 @@
                             <span style="color: #8e8e8e" th:text="|댓글 ${boardsCommunity.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1 th:text="${boardsCommunity.boardTitle}">테스트 제목입니다.</h1>
+                            <a th:href="@{/board/view/{bid}(bid = ${boardsCommunity.bid})}"><h1 th:text="${boardsCommunity.boardTitle}">테스트 제목입니다.</h1></a>
                         </div>
                         <div class="line">
                         </div>
@@ -85,7 +85,7 @@
     <article class="">
         <section id="section2">
             <div class="category">
-                <h1>고민</h1>
+                <a href="/board/list/worry"><h1>고민</h1></a>
             </div>
             <div class="border-box">
                 <ol th:each="boardWorry : ${boardWorry}">
@@ -96,7 +96,7 @@
                             <span style="color: #8e8e8e" th:text="|댓글 ${boardWorry.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1 th:text="${boardWorry.boardTitle}">테스트 제목입니다.</h1>
+                            <a th:href="@{/board/view/{bid}(bid = ${boardWorry.bid})}"><h1 th:text="${boardWorry.boardTitle}">테스트 제목입니다.</h1></a>
                         </div>
                         <div class="line">
                         </div>
@@ -106,7 +106,7 @@
         </section>
         <section id="section2">
             <div class="category">
-                <h1>스터디</h1>
+                <a href="/board/list/study"><h1>스터디</h1></a>
             </div>
             <div class="border-box">
                 <ol th:each="boardStudy : ${boardStudy}">
@@ -117,7 +117,7 @@
                             <span style="color: #8e8e8e" th:text="|댓글 ${boardStudy.boardCount}개|">comment</span>
                         </div>
                         <div class="border-title">
-                            <h1 th:text="${boardStudy.boardTitle}">테스트 제목입니다.</h1>
+                            <a th:href="@{/board/view/{bid}(bid = ${boardStudy.bid})}"><h1 th:text="${boardStudy.boardTitle}">테스트 제목입니다.</h1></a>
                         </div>
                         <div class="line">
                         </div>

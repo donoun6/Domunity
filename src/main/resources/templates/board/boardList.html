@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/boardList.css">
+    <link rel="stylesheet" href="/css/initial.css">
+    <title></title>
+</head>
+<body>
+<header>
+    <div class="headerWrap">
+        <div class="headerLogo">
+            <h1><a href="/" style="color: #4b89eb;">Domunity</a></h1>
+        </div>
+        <div class="headerNav">
+            <ol>
+                <li><a href="/board/list/qna">QnA</a></li>
+                <li><a href="/board/list/community">커뮤니티</a></li>
+                <li><a href="/board/list/worry">고민</a></li>
+                <li><a href="/board/list/study">스터디</a></li>
+            </ol>
+        </div>
+        <div class="searchNav">
+            <input type="text" name="" value="" placeholder="검색">
+        </div>
+        <div class="headerUser">
+            <th:block sec:authorize="isAnonymous()">
+                <div class="signin-btn"><a href="/auth/signin"><p>로그인</p></a></div>
+                <div class="signup-btn"><a href="/auth/signup"><p>회원가입</p></a></div>
+            </th:block>
+            <th:block sec:authorize="isAuthenticated()">
+                <div class="signin-btn"><a href="/auth/update"><p>개인정보</p></a></div>
+                <div class="signup-btn"><a href="/logout"><p>로그아웃</p></a></div>
+            </th:block>
+
+        </div>
+    </div>
+</header>
+<main>
+    <div class="write-btn">
+        <a href="/board/saveForm"><p>작성하기</p></a>
+    </div>
+    <article class="">
+        <section id="section">
+            <div class="category">
+                <th:block  th:switch="${category}">
+                    <h1 th:case="qna">QnA</h1>
+                    <h1 th:case="community">커뮤니티</h1>
+                    <h1 th:case="worry">고민</h1>
+                    <h1 th:case="study">스터디</h1>
+                </th:block>
+            </div>
+            <div class="border-box">
+                <ol>
+                    <li th:each="boardView : ${boardView}">
+                        <div class="border-info">
+                            <span th:text="${boardView.mid.memberName}">donoun6</span>
+                            <span th:text="${#strings.substring(boardView.regDate,0,10)}">1분전</span>
+                            <span th:text="|댓글 ${boardView.boardCount}개|">댓글 1개</span>
+                        </div>
+                        <div class="border-title">
+                            <a th:href="@{/board/view/{bid}(bid = ${boardView.bid})}"><h1 th:text="${boardView.boardTitle}">테스트 제목입니다.</h1></a>
+                            <th:block th:switch="${boardView.boardCategory}">
+                                <span th:case="qna">QnA</span>
+                                <span th:case="community">커뮤니티</span>
+                                <span th:case="worry">고민</span>
+                                <span th:case="study">스터디</span>
+                            </th:block>
+                        </div>
+                        <div class="line">
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </article>
+</main>
+<footer>
+    <div class="footerWrap">
+        <p>Copyright &copy; donoun6 2023</p>
+    </div>
+</footer>
+</body>
+</html>

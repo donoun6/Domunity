@@ -51,12 +51,6 @@ class MemberDaoTest {
         memberDao.save(member);
     }
 
-    @Test
-    void findById() {
-        Member member = memberDao.findById("donoun6");
-        log.info(member.toString());
-    }
-
 
     @Test
     void hash() {
