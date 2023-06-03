@@ -31,9 +31,15 @@ public interface BoardService {
 
     /**
      * 게시물 보기
-     * @param id
+     * @param bid
      * @return
      */
-    public Board viewBoard(int id);
+    public Board viewBoard(int bid);
+
+    /**
+     * 게시글 삭제
+     * @param bid
+     */
+    public void deleteBoard(int bid);
 
 }

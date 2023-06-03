@@ -45,4 +45,9 @@ public class BoardServiceImpl implements BoardService {
         });
     }
 
+    @Override
+    public void deleteBoard(int bid) {
+        boardRepository.deleteById(bid);
+    }
+
 }

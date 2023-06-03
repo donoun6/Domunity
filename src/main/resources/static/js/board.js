@@ -3,17 +3,18 @@ let index = {
         $(".sum-btn").on("click", ()=> { //function(){} => {} this 바인딩 하기 위해서
             this.save();
         });
+
+        $(".delete-btn").on("click", ()=> {
+            this.deleteById();
+        });
     },
 
     save:function(){
-        //alert(save 함수 호출)
         let data = {
             boardCategory : $("#boardCategory").val(),
             boardTitle: $("#boardTitle").val(),
             boardContent: $("#boardContent").val()
-
         }
-        console.log(data);
         $.ajax({
             type:'post',
             url:'/api/board',
@@ -24,12 +25,26 @@ let index = {
             alert("글쓰기가 완료되었습니다.")
             window.location.replace("/");
         }).fail(function (error){
-           alert("글쓰기에 실패하였습니다.");
+            alert("글쓰기에 실패하였습니다.");
+        });
+
+    },
+
+    deleteById:function(){
+        var bid = $(".bid").val();
+        $.ajax({
+            type:'DELETE',
+            url:'/api/board/'+bid,
+            dataType: "json",
+        }).done(function (resp){
+            alert("삭제가 완료되었습니다.")
+            window.location.replace("/");
+        }).fail(function (error){
+            alert("삭제에 실패하였습니다.");
         });
 
     },
 }
-
 index.init();
 
 

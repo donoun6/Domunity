@@ -11,7 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/board")
@@ -27,7 +28,8 @@ public class BoardController {
     }
 
     @GetMapping("/view/{bid}")
-    public String boardView(@PathVariable int bid, Model model) {
+    public String boardView(@PathVariable int bid, Model model, Principal principal) {
+        model.addAttribute("principalName", principal.getName());
         model.addAttribute("board", boardService.viewBoard(bid));
         return "board/detail";
     }
