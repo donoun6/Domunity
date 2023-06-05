@@ -17,12 +17,24 @@ public class BoardApiController {
     @Autowired
     private BoardService boardService;
 
+    /**
+     * 게시물 등록 API
+     * @param board
+     * @param principal
+     * @return
+     */
     @PostMapping("/api/board")
     public BoardResponseDto<Integer> save(@RequestBody Board board, @AuthenticationPrincipal MemberDetailsService principal) {
         boardService.save(board, principal.getMember());
         return new BoardResponseDto<>(HttpStatus.OK.value(), 1);
     }
 
+    /**
+     * 게시물 삭제 API
+     * @param bid
+     * @param principal
+     * @return
+     */
     @DeleteMapping("/api/board/{bid}")
     public BoardResponseDto<Integer> deleteById(@PathVariable int bid, Principal principal) {
         boardService.deleteBoard(bid);

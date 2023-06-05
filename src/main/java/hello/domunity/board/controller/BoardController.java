@@ -21,12 +21,24 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    /**
+     * 게시물 등록 Form
+     * @param model
+     * @return
+     */
     @GetMapping("/saveForm")
     public String saveForm(Model model){
         model.addAttribute("board",new Board());
         return "board/saveForm";
     }
 
+    /**
+     * 게시물 상세 보기
+     * @param bid
+     * @param model
+     * @param principal
+     * @return
+     */
     @GetMapping("/view/{bid}")
     public String boardView(@PathVariable int bid, Model model, Principal principal) {
         model.addAttribute("principalName", principal.getName());
@@ -34,6 +46,13 @@ public class BoardController {
         return "board/detail";
     }
 
+    /**
+     * 카테고리별 게시물 보기
+     * @param category
+     * @param model
+     * @param pageable
+     * @return
+     */
     @GetMapping("/list/{category}")
     public String boardList(@PathVariable String category, Model model , @PageableDefault(size = 3, sort = "bid", direction = Sort.Direction.DESC)Pageable pageable) {
         model.addAttribute("category", category);
