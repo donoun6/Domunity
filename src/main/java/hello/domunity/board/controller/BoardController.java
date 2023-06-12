@@ -20,6 +20,7 @@ import java.security.Principal;
 public class BoardController {
 
     private final BoardService boardService;
+    
 
     /**
      * 게시물 등록 Form
@@ -42,6 +43,8 @@ public class BoardController {
     @GetMapping("/view/{bid}")
     public String boardView(@PathVariable int bid, Model model, Principal principal) {
         model.addAttribute("principalName", principal.getName());
+        Board board = boardService.viewBoard(bid);
+        System.out.println("board = " + board);
         model.addAttribute("board", boardService.viewBoard(bid));
         return "board/detail";
     }
@@ -54,10 +57,11 @@ public class BoardController {
      * @return
      */
     @GetMapping("/list/{category}")
-    public String boardList(@PathVariable String category, Model model , @PageableDefault(size = 3, sort = "bid", direction = Sort.Direction.DESC)Pageable pageable) {
+    public String boardList(@PathVariable String category, Model model , @PageableDefault(size = 10, sort = "bid", direction = Sort.Direction.DESC)Pageable pageable) {
         model.addAttribute("category", category);
         model.addAttribute("boardView", boardService.viewBoardByCategory(category,pageable));
         return "board/boardList";
     }
+
 
 }

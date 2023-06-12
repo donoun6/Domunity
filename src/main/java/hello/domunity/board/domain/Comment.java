@@ -28,8 +28,8 @@ public class Comment {
     @JoinColumn(name = "bid")
     private Board bid;
 
-    @Column(nullable = false, length = 200)
-    private String contentDef;
+    @Column(nullable = false, length = 500)
+    private String commentDef;
 
     @CreationTimestamp
     private Timestamp regDate;

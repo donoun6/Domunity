@@ -1,8 +1,9 @@
 package hello.domunity.board.service;
 
-import hello.domunity.board.dao.BoardDao;
 import hello.domunity.board.domain.Board;
+import hello.domunity.board.domain.Comment;
 import hello.domunity.board.repository.BoardRepository;
+import hello.domunity.board.repository.CommentRepository;
 import hello.domunity.member.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -17,8 +18,8 @@ import java.util.List;
 @Transactional
 public class BoardServiceImpl implements BoardService {
 
+    private final CommentRepository commentRepository;
     private final BoardRepository boardRepository;
-//    private final BoardDao boardDao;
 
     @Override
     public void save(Board board, Member member) {
@@ -48,6 +49,18 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void deleteBoard(int bid) {
         boardRepository.deleteById(bid);
+    }
+
+    @Override
+    public void saveComment(Member member, int bid, Comment comment) {
+        Board board = boardRepository.findById(bid).orElseThrow(() -> {
+            return new IllegalArgumentException("댓글 작성 실패 : 게시글 id를 찾을 수 없습니다.");
+        });//영속화 (엔티티를 영구 저장하는 환경)
+
+        comment.setMid(member);
+        comment.setBid(board);
+
+        commentRepository.save(comment);
     }
 
 }

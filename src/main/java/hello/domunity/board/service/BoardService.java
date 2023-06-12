@@ -1,6 +1,7 @@
 package hello.domunity.board.service;
 
 import hello.domunity.board.domain.Board;
+import hello.domunity.board.domain.Comment;
 import hello.domunity.member.domain.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,5 +42,13 @@ public interface BoardService {
      * @param bid
      */
     public void deleteBoard(int bid);
+
+    /**
+     * 댓글 작성
+     * @param member
+     * @param bid
+     * @param comment
+     */
+    public void saveComment(Member member, int bid, Comment comment);
 
 }

@@ -1,6 +1,7 @@
 package hello.domunity.board.repository;
 
 import hello.domunity.board.domain.Board;
+import hello.domunity.board.domain.Comment;
 import hello.domunity.member.domain.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,4 +24,5 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
      * @return
      */
     Page<Board> findByBoardCategory(String categoty, Pageable pageable);
+
 }

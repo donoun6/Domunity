@@ -1,8 +1,8 @@
 package hello.domunity.board.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hello.domunity.member.domain.Member;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -29,7 +29,9 @@ public class Board {
 
     //하나의 게시글은 여러개의 댓글을 가질 수 있다. fetch = FetchType.LAZY = 필요할때 가져오겠다
     @OneToMany(mappedBy = "bid", fetch = FetchType.EAGER) //mappedBy 연관관계의 주인이 아니다 (난 PK가 아니다) DB에 컬럼을 만들지 않는다. Comment의 bid가 PK가 된다.
-    private List<Comment> cid; //1건이 아니기 때문에 collection이 되어야 한다.
+    @JsonIgnoreProperties({"bid"}) //board에서 comment를 호출하고 comment에서 또 board를 호출한다 (무한참조) 이를 방지하기 위함
+    @OrderBy("cid desc") // cid를 기준으로 내림차순 정렬
+    private List<Comment> comments; //1건이 아니기 때문에 collection이 되어야 한다.
 
     @Column(nullable = false, length = 100)
     private String boardTitle;
