@@ -66,9 +66,22 @@ let index = {
             alert("댓글작성이 완료되었습니다.")
             window.location.replace(`/board/view/${bid}`);
         }).fail(function (error){
-            alert("글쓰기에 실패하였습니다.");
+            alert("댓글작성에 실패하였습니다.");
         });
+    },
 
+    commentDelete:function(bid, cid){
+
+        $.ajax({
+            type:'DELETE',
+            url:`/api/board/${bid}/comment/${cid}`,
+            dataType: "json",
+        }).done(function (resp){
+            alert("댓글삭제 완료")
+            window.location.replace(`/board/view/${bid}`);
+        }).fail(function (error){
+            alert("댓글삭제에 실패하였습니다.");
+        });
     }
 }
 index.init();

@@ -51,4 +51,10 @@ public interface BoardService {
      */
     public void saveComment(Member member, int bid, Comment comment);
 
+    /**
+     * 댓글 삭제
+     * @param cid
+     */
+    public void deleteComment(int cid);
+
 }

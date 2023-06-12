@@ -50,49 +50,50 @@
             <h1>함께할때 더 즐거운 순간</h1>
             <p>지식공유 플랫폼 OKKY에서 다양한 사람을 만나고 생각의 폭을 넓혀보세요.</p>
         </div>
-        <form>
-            <ol>
-                <li><label for="boardCategory">Category</label></li>
-                <li>
-                    <select class="select" id="boardCategory">
-                        <option value="" disabled="disabled" selected>----- 카테고리를 선택하세요 -----</option>
-                        <option value="qna">QnA</option>
-                        <option value="community">커뮤니티</option>
-                        <option value="worry">고민</option>
-                        <option value="study">스터디</option>
-                    </select>
-                </li>
-                <li><label for="boardTitle">Title</label></li>
-                <li><input id="boardTitle" class="board-input" type="text" placeholder="제목을 입력해주세요." minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]+$"></li>
-                <li><label for="boardContent">Content</label></li>
-                <li>
+        <ol>
+            <li><label for="boardCategory">Category</label></li>
+            <li>
+                <select class="select" id="boardCategory">
+                    <option value="" disabled="disabled" selected>----- 카테고리를 선택하세요 -----</option>
+                    <option value="qna">QnA</option>
+                    <option value="community">커뮤니티</option>
+                    <option value="worry">고민</option>
+                    <option value="study">스터디</option>
+                </select>
+            </li>
+            <li><label for="boardTitle">Title</label></li>
+            <li><input id="boardTitle" class="board-input" type="text" placeholder="제목을 입력해주세요." minlength="5"
+                       maxlength="20" pattern="^[a-zA-Z0-9]+$"></li>
+            <li><label for="boardContent">Content</label></li>
+            <li>
                     <textarea id="boardContent" class="summernote" type="text" th:class="form-control"
                               name="boardContents" rows="15" cols="95" placeholder="내용을 입력해주세요."></textarea>
-                <li style="text-align: center;"><button class="sum-btn" type="submit">작성하기</button></li>
-                <ol>
-        </form>
+            <li style="text-align: center;">
+                <button class="sum-btn" type="submit">작성하기</button>
+            </li>
+            <ol>
     </div>
 </main>
 <footer>
     <div class="footerWrap">
-<!--        <p>Copyright &copy; donoun6 2023</p>-->
+        <!--        <p>Copyright &copy; donoun6 2023</p>-->
     </div>
 </footer>
 <script>
     $('#boardContent').summernote({
-        height : 400,
-        width : 904,
-        lang : 'ko-KR',
-        focus : false,
+        height: 400,
+        width: 904,
+        lang: 'ko-KR',
+        focus: false,
         toolbar: [
             // 글꼴 설정
             ['fontname', ['fontname']],
             // 글자 크기 설정
             ['fontsize', ['fontsize']],
             // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
-            ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
             // 글자색
-            ['color', ['forecolor','color']],
+            ['color', ['forecolor', 'color']],
             // 표만들기
             ['table', ['table']],
             // 글머리 기호, 번호매기기, 문단정렬
@@ -100,14 +101,14 @@
             // 줄간격
             ['height', ['height']],
             // 그림첨부, 링크만들기, 동영상첨부
-            ['insert',['picture','link','video']],
+            ['insert', ['picture', 'link', 'video']],
             // 코드보기, 확대해서보기, 도움말
             ['view', ['codeview', 'help']]
         ],
         // 추가한 글꼴
-        fontNames: ['맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+        fontNames: ['맑은 고딕', '궁서', '굴림체', '굴림', '돋음체', '바탕체', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
         // 추가한 폰트사이즈
-        fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72'],
+        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72'],
     });
 
     $('#boardContent').summernote('fontName', '맑은 고딕');

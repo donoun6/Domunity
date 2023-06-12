@@ -30,12 +30,24 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<Board> HomeViewBoardByCategory(String category) {
-        return boardRepository.findTop6ByBoardCategoryOrderByBidDesc(category);
+        List<Board> boardList = boardRepository.findTop6ByBoardCategoryOrderByBidDesc(category);
+        for(int i = 0; i < boardList.size(); i++) {
+            Board board = boardList.get(i);
+            int count = commentRepository.countAllByBid(board).intValue();
+            board.setBoardCount(count);
+        }
+        return boardList;
     }
 
     @Override
     public Page<Board> viewBoardByCategory(String category , Pageable pageable) {
-        return boardRepository.findByBoardCategory(category, pageable);
+        Page<Board> boardList = boardRepository.findByBoardCategory(category, pageable);
+        for(int i = 0; i < boardList.toList().size(); i++ ){
+            Board board = boardList.toList().get(i);
+            int count = commentRepository.countAllByBid(board).intValue();
+            board.setBoardCount(count);
+        }
+        return boardList;
     }
 
     @Override
@@ -61,6 +73,11 @@ public class BoardServiceImpl implements BoardService {
         comment.setBid(board);
 
         commentRepository.save(comment);
+    }
+
+    @Override
+    public void deleteComment(int cid) {
+        commentRepository.deleteById(cid);
     }
 
 }

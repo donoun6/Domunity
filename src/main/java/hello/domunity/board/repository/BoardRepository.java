@@ -24,5 +24,4 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
      * @return
      */
     Page<Board> findByBoardCategory(String categoty, Pageable pageable);
-
 }

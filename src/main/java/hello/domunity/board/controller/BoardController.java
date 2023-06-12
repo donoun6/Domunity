@@ -44,7 +44,6 @@ public class BoardController {
     public String boardView(@PathVariable int bid, Model model, Principal principal) {
         model.addAttribute("principalName", principal.getName());
         Board board = boardService.viewBoard(bid);
-        System.out.println("board = " + board);
         model.addAttribute("board", boardService.viewBoard(bid));
         return "board/detail";
     }

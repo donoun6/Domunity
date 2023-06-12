@@ -1,5 +1,6 @@
 package hello.domunity.member.dao;
 
+import hello.domunity.board.repository.CommentRepository;
 import hello.domunity.member.domain.Member;
 import hello.domunity.member.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,8 @@ class MemberDaoTest {
     @Autowired
     MemberService memberService;
 
-
+    @Autowired
+    CommentRepository commentRepository;
 
     @TestConfiguration
     static class TestConfig {

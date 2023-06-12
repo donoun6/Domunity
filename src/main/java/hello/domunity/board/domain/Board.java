@@ -45,7 +45,7 @@ public class Board {
     @Column(nullable = false, length = 10)
     private String boardCategory;
 
-    private int boardCount; //조회수
+    private int boardCount;
 
     @CreationTimestamp
     private Timestamp regDate;

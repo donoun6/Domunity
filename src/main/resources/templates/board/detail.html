@@ -74,12 +74,10 @@
 </main>
 <div class="comment-wrap">
     <div class="coment-form">
-        <form>
-            <input type="hidden" th:field="${board.bid}" >
-            <p>회원 간 불편함이 발생하지 않도록 따듯한 댓글 부탁드립니다.</p>
-            <div><textarea id="commentContent" rows="5" cols="120"></textarea></div>
-            <div><button class="comment-btn">댓글작성</button></div>
-        </form>
+        <input type="hidden" th:field="${board.bid}" >
+        <p>회원 간 불편함이 발생하지 않도록 따듯한 댓글 부탁드립니다.</p>
+        <div><textarea id="commentContent" rows="5" cols="120"></textarea></div>
+        <div><button class="comment-btn">댓글작성</button></div>
     </div>
     <div class="comment-list">
         <div class="comment-userInfo">
@@ -90,7 +88,7 @@
                     <span class="def" th:text="${comment.getCommentDef()}">comment</span>
                     <input class="bid" type="hidden">
                     <th:block th:if="${comment.mid.getMemberId() == principalName}">
-                        <button class="commentDelete-btn">삭제하기</button>
+                        <button th:onclick="index.commentDelete([[${board.bid}]],[[${comment.cid}]])" class="commentDelete-btn">삭제하기</button>
                     </th:block>
                 </li>
             </ol>
