@@ -31,22 +31,26 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public List<Board> HomeViewBoardByCategory(String category) {
         List<Board> boardList = boardRepository.findTop6ByBoardCategoryOrderByBidDesc(category);
+
         for(int i = 0; i < boardList.size(); i++) {
             Board board = boardList.get(i);
             int count = commentRepository.countAllByBid(board).intValue();
             board.setBoardCount(count);
         }
+
         return boardList;
     }
 
     @Override
     public Page<Board> viewBoardByCategory(String category , Pageable pageable) {
         Page<Board> boardList = boardRepository.findByBoardCategory(category, pageable);
+
         for(int i = 0; i < boardList.toList().size(); i++ ){
             Board board = boardList.toList().get(i);
             int count = commentRepository.countAllByBid(board).intValue();
             board.setBoardCount(count);
         }
+
         return boardList;
     }
 
@@ -65,7 +69,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void saveComment(Member member, int bid, Comment comment) {
-        Board board = boardRepository.findById(bid).orElseThrow(() -> {
+        Board board = boardRepository.findById(bid)
+                .orElseThrow(() -> {
             return new IllegalArgumentException("댓글 작성 실패 : 게시글 id를 찾을 수 없습니다.");
         });//영속화 (엔티티를 영구 저장하는 환경)
 

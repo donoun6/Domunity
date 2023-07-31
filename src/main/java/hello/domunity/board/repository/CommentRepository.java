@@ -10,5 +10,11 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
+
+    /**
+     * 댓글 개수 출력
+     * @param bid
+     * @return
+     */
     Long countAllByBid(Board bid);
 }
