@@ -263,7 +263,8 @@ section {
 }
 
 #section .border-info span:last-child {
-    margin-left: 75%;
+    position: absolute;
+    right: 10px;
 }
 
 #section .border-info span {
